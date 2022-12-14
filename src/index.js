@@ -20,7 +20,7 @@ const oidc = new Provider(`https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
   clients: [
     {
       client_id: '123',
-      client_secret: "node-oidc-secret",
+      // client_secret: "node-oidc-secret",
       redirect_uris: ['https://jwt.io', 'http://localhost:8910/redirect/node_oidc'], // using jwt.io as redirect_uri to show the ID Token contents
       response_types: ['code'],
       grant_types: ['authorization_code'],
@@ -34,7 +34,7 @@ const oidc = new Provider(`https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
   // oidc-provider only looks up the accounts by their ID when it has to read the claims,
   // passing it our Account model method is sufficient, it should return a Promise that resolves
   // with an object with accountId property and a claims method.
-  // findAccount: Account.findAccount,
+  findAccount: Account.findAccount,
 
   // let's tell oidc-provider you also support the email scope, which will contain email and
   // email_verified claims
@@ -54,11 +54,12 @@ const oidc = new Provider(`https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
   },
   features: {
     // disable the packaged interactions
-    devInteractions: { enabled: true },
+    devInteractions: { enabled: false },
   },
 });
 
 oidc.proxy = true;
+// oidc.listen(process.env.PORT);
 
 // let's work with express here, below is just the interaction definition
 const expressApp = express();
