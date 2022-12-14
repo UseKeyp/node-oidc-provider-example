@@ -1,5 +1,5 @@
 // see previous example for the things that are not commented
-require('dotenv').config()
+require('dotenv').config();
 
 const assert = require('assert');
 const path = require('path');
@@ -16,12 +16,12 @@ const jwks = require('./jwks.json');
 // simple account model for this application, user list is defined like so
 const Account = require('./account');
 
-const oidc = new Provider(`https://node-oidc-provider-example.vercel.app`, {
+const oidc = new Provider('https://node-oidc-provider-example.vercel.app', {
   clients: [
     {
       client_id: '123',
       // client_secret: "node-oidc-secret",
-      redirect_uris: ['https://jwt.io', 'http://localhost:8910/redirect/node_oidc', 'https://oauth2-client-redwood-eta.vercel.app/redirect/node_oidc'], // using jwt.io as redirect_uri to show the ID Token contents
+      redirect_uris: ['https://jwt.io', 'http://0.0.0.0:8910/redirect/node_oidc', 'http://localhost:8910/redirect/node_oidc', 'https://oauth2-client-redwood-eta.vercel.app/redirect/node_oidc'], // using jwt.io as redirect_uri to show the ID Token contents
       response_types: ['code'],
       grant_types: ['authorization_code'],
       token_endpoint_auth_method: 'none',
