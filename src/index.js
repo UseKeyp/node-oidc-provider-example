@@ -16,7 +16,7 @@ const jwks = require('./jwks.json');
 // simple account model for this application, user list is defined like so
 const Account = require('./account');
 
-const oidc = new Provider(`https://node-oidc-provider-example.vercel.app/api`, {
+const oidc = new Provider(`https://node-oidc-provider-example.vercel.app`, {
   clients: [
     {
       client_id: '123',
