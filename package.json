@@ -3,7 +3,7 @@
   "version": "6.0.0-alpha.3",
   "main": "index.js",
   "scripts":{
-    "start": "node src/index.js"
+    "start": "node api/index.js"
   },
   "engines": {
     "node": "^12.19.0 || ^14.15.0 || ^16.13.0"
