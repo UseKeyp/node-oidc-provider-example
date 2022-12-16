@@ -21,8 +21,8 @@ const oidc = new Provider('https://node-oidc-provider-example.vercel.app', {
     {
       client_id: '123',
       // client_secret: "node-oidc-secret",
-      redirect_uris: ['https://jwt.io', 'http://0.0.0.0:3000/redirect/node_oidc', 'http://0.0.0.0:8910/redirect/node_oidc', 
-      'http://localhost:8910/redirect/node_oidc', 'https://oauth2-client-redwood-eta.vercel.app/redirect/node_oidc'], // using jwt.io as redirect_uri to show the ID Token contents
+      redirect_uris: ['https://jwt.io', 'http://0.0.0.0:3000/redirect/node_oidc', 'http://localhost:3000/redirect/node_oidc', 'http://0.0.0.0:8910/redirect/node_oidc',
+        'http://localhost:8910/redirect/node_oidc', 'https://oauth2-client-redwood-eta.vercel.app/redirect/node_oidc'], // using jwt.io as redirect_uri to show the ID Token contents
       response_types: ['code'],
       grant_types: ['authorization_code'],
       token_endpoint_auth_method: 'none',
@@ -79,6 +79,7 @@ function setNoCache(req, res, next) {
 expressApp.get('/interaction/:uid', setNoCache, async (req, res, next) => {
   try {
     const details = await oidc.interactionDetails(req, res);
+    // eslint-disable-next-line no-console
     console.log('see what else is available to you for interaction views', details);
     const {
       uid, prompt, params,
