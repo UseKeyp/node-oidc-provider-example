@@ -21,7 +21,7 @@ const oidc = new Provider('https://node-oidc-provider-example.vercel.app', {
     {
       client_id: '123',
       // client_secret: "node-oidc-secret",
-      redirect_uris: ['https://jwt.io', 'http://0.0.0.0:3000/redirect/node_oidc', 'http://localhost:3000/redirect/node_oidc', 'http://0.0.0.0:8910/redirect/node_oidc',
+      redirect_uris: ['https://jwt.io', 'http://localhost/redirect/node_oidc', 'http://0.0.0.0:3000/redirect/node_oidc', 'http://localhost:3000/redirect/node_oidc', 'http://0.0.0.0:8910/redirect/node_oidc',
         'http://localhost:8910/redirect/node_oidc', 'https://oauth2-client-redwood-eta.vercel.app/redirect/node_oidc'], // using jwt.io as redirect_uri to show the ID Token contents
       response_types: ['code'],
       grant_types: ['authorization_code'],
@@ -112,7 +112,12 @@ expressApp.get('/interaction/:uid', setNoCache, async (req, res, next) => {
 
 expressApp.post('/interaction/:uid/login', setNoCache, parse, async (req, res, next) => {
   try {
-    const { uid, prompt, params } = await oidc.interactionDetails(req, res);
+    const details = await oidc.interactionDetails(req, res)
+    console.log(
+      'see what else is available to you for interaction views',
+      details
+    )
+    const { uid, prompt, params } = details
     assert.strictEqual(prompt.name, 'login');
     const client = await oidc.Client.find(params.client_id);
 
