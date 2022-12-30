@@ -1,3 +1,5 @@
+> Oauth2 server for testing oauth2-client-redwood
+
 # example setup of oidc-provider
 
 By following this example you will set up an [oidc-provider](https://github.com/panva/node-oidc-provider)
@@ -11,11 +13,10 @@ Prerequisites
 - wget
 - git
 
-
 Start [here](00-oidc-minimal).
 
-NB
----
+## NB
+
 By no means is oidc-provider limited to only run on heroku or only using the showcased options. The user-interactions are also ONLY intended to show how these are to be provided and maintained. Features such as sign-up, password resets and security measures like csrf, rate limiting, captcha - that's all on you and isn't a part of the protocol implementation provided by oidc-provider.
 
 Supported deployments include mounting the OP to an existing nodejs application, e.g. connect, express, fastify, hapi, koa, or nest. Running those using cluster mode spread across several hosts, behind haproxy, nginx,
