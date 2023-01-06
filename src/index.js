@@ -57,6 +57,16 @@ const oidc = new Provider('https://node-oidc-provider-example.vercel.app', {
     // disable the packaged interactions
     devInteractions: { enabled: false },
   },
+  ttl: {
+    // Sessions
+    Session: 1209600, // 14 days in seconds
+    Interaction: 600, // 10 minutes
+    DeviceCode: 600, // 10 minutes
+    // Tokens
+    AuthorizationCode: 60, //  1 minute
+    IdToken: 3600, // 1 hour
+    AccessToken: 86400, // 24 hours
+  },
 });
 
 oidc.proxy = true;
@@ -112,12 +122,12 @@ expressApp.get('/interaction/:uid', setNoCache, async (req, res, next) => {
 
 expressApp.post('/interaction/:uid/login', setNoCache, parse, async (req, res, next) => {
   try {
-    const details = await oidc.interactionDetails(req, res)
+    const details = await oidc.interactionDetails(req, res);
     console.log(
       'see what else is available to you for interaction views',
-      details
-    )
-    const { uid, prompt, params } = details
+      details,
+    );
+    const { uid, prompt, params } = details;
     assert.strictEqual(prompt.name, 'login');
     const client = await oidc.Client.find(params.client_id);
 
