@@ -30,7 +30,7 @@ const oidc = new Provider("https://node-oidc-provider-example.vercel.app", {
       // client_secret: "node-oidc-secret",
       redirect_uris: [
         "https://jwt.io",
-        "https://app.oauth-demo.keyp.gg",
+        "https://app.oauth-demo.keyp.gg/redirect/node_oidc",
         "http://localhost/redirect/node_oidc",
         "http://0.0.0.0:3000/redirect/node_oidc",
         "http://localhost:3000/redirect/node_oidc",
